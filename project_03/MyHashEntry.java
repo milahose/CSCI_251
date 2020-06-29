@@ -15,7 +15,8 @@ public class MyHashEntry<K extends Comparable<K> , V> {
    * @param value The value of myHashEntry
    */
   public MyHashEntry(K key, V value) {
-      
+    this.key = key;
+    this.value = value;
   }
   
   /**
@@ -23,7 +24,7 @@ public class MyHashEntry<K extends Comparable<K> , V> {
    * @return the key of the ordered pair
    */
   public K getKey() {
-      
+    return key;
   }
   
   /**
@@ -31,7 +32,7 @@ public class MyHashEntry<K extends Comparable<K> , V> {
    * @param key The key for this ordered pair
    */
   public void setKey(K key) {
-      
+    this.key = key;
   }
   
   /**
@@ -39,7 +40,7 @@ public class MyHashEntry<K extends Comparable<K> , V> {
    * @return the value of this ordered pair
    */
   public V getValue() {
-      
+    return value;
   }
   
   /**
@@ -47,7 +48,7 @@ public class MyHashEntry<K extends Comparable<K> , V> {
    * @param value the new value of this ordered pair
    */
   public void setValue(V value) {
-      
+    this.value = value;
   }
   
   /**
@@ -55,7 +56,7 @@ public class MyHashEntry<K extends Comparable<K> , V> {
    * @param next A reference to the next entry
    */
   public void setNext(MyHashEntry<K, V> next) {
-      
+    this.next = next;
   }
   
   /**
@@ -63,6 +64,6 @@ public class MyHashEntry<K extends Comparable<K> , V> {
    * @return a reference to the next entry
    */
   public MyHashEntry<K, V> getNext() {
-      
+    return next;
   }
 }
