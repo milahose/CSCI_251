@@ -23,7 +23,7 @@ public class CSCI251ProjFour {
       case 1:
         System.out.print("Enter data that you will add to tree: ");
         data = input.nextInt();
-        tree.insert((int)(data));
+        tree.insert(Integer.valueOf(data));
         System.out.println("The tree is: " + tree);
         break;
       case 2: 
@@ -32,7 +32,7 @@ public class CSCI251ProjFour {
         if(tree.search(data) == null)
           System.out.println("No such data in tree");
         else{
-          tree.remove((int)(data));
+          tree.remove(Integer.valueOf(data));
           System.out.println("The tree is: " + tree);
         }
         break;
