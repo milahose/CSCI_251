@@ -41,22 +41,82 @@ public class MyGraph {
   }
     
   /**
-   * return a String that represent the vertices in order if the BFS algorithm is used to traversal the graph
-   * starting from the given vertex. If the startVertex not exists, return an error message
+   * return a String that represent the vertices in order if the BFS algorithm is used to traverse the graph
+   * starting from the given vertex. If the startVertex does not exists, return an error message
    * @param startVertex The vertex where the traversal starts
    * @return A String that describes the vertices visited in order
    */
   public String bfs(int startVertex){
-    // student implement this
+    // Check for invalid input
+    if (startVertex < 1 || startVertex > numberOfVertices) {
+      return "Sorry, " + startVertex + " is not a valid vertex.";
+    }
+
+    // Discovered vertices, beginning with user's input
+    String discovered = startVertex + ", ";
+    // Create a queue
+    LinkedList<Integer> queue = new LinkedList<Integer>();
+    // Add start vertex to queue
+    queue.addLast(startVertex);
+
+    while (!queue.isEmpty()) {
+      // Get first value from queue
+      int currentVertex = queue.removeFirst();  
+      // Search the vertices
+      for (int i = 1; i <= graph[currentVertex].length - 1; i++) {
+        int current = graph[currentVertex][i];
+        boolean notDiscovered = !discovered.contains(Integer.toString(i));
+        // If vertex is eligable and not discovered
+        if (current > 0 && current < Integer.MAX_VALUE && notDiscovered) {
+          // Add to queue and discovered list
+          queue.addLast(i);
+          discovered += i + ", ";
+        }
+      }
+    }
+    
+    // Remove trailing comma before returning
+    return discovered.substring(0, discovered.length() - 2);
   }
   
   /**
-   * return a String that represents the vertices in order if the DFS algorithm is used to traversal the graph
-   * starting from the given vertex. If the startVertex not exist, return an error message
+   * return a String that represents the vertices in order if the DFS algorithm is used to traverse the graph
+   * starting from the given vertex. If the startVertex does not exist, return an error message
    * @param startVertex The vertex where the traversal starts
-   * @return An ArrayList of Integer that represents the vertices visited in order
+   * @return A String that describes the vertices visited in order
    */
   public String dfs(int startVertex){
-    // the student implement this
+    // Check for invalid input
+    if (startVertex < 1 || startVertex > numberOfVertices) {
+      return "Sorry, " + startVertex + " is not a valid vertex.";
+    }
+
+    // Discovered vertices, beginning with user's input
+    String discovered = startVertex + ", ";
+    // Create a stack
+    Stack<Integer> stack = new Stack<Integer>();
+    // Add start vertex to stack
+    stack.push(startVertex);
+
+    while (!stack.isEmpty()) {
+      // Get top of stack
+      int currentVertex = stack.pop();
+      // Search the vertices
+      for (int i = 1; i <= graph[currentVertex].length - 1; i++) {
+        int current = graph[currentVertex][i];
+        boolean notDiscovered = !discovered.contains(Integer.toString(i));
+        // If vertex is eligable and not discovered
+        if (current > 0 && current < Integer.MAX_VALUE && notDiscovered) {
+          // Add to stack and discovered list
+          stack.push(i);
+          discovered += i + ", ";
+          // Move to next vertex
+          break;
+        }
+      }
+    }
+
+    // Remove trailing comma before returning
+    return discovered.substring(0, discovered.length() - 2);
   }
 }
